@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable{
 		
 		screen=new Screen(WIDTH,HEIGHT, new SpriteSheet("./res/sprite_sheet.png"));
 		input = new InputHandler(this);
-		level=new Level(64,64);
+		level=new Level("C:/Users/PC/Desktop/gioco/java2DGame/res/levels/small_test_level.png");
 		player=new Player(level,0,0,input);
 		level.addEntity(player);
 	}
