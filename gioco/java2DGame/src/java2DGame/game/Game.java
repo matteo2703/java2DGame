@@ -7,9 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-
 import javax.swing.JFrame;
-
 import java2DGame.game.entities.Player;
 import java2DGame.game.gfx.Screen;
 import java2DGame.game.gfx.SpriteSheet;
@@ -73,7 +71,7 @@ public class Game extends Canvas implements Runnable{
 		
 		screen=new Screen(WIDTH,HEIGHT, new SpriteSheet("./res/sprite_sheet.png"));
 		input = new InputHandler(this);
-		level=new Level("C:/Users/PC/Desktop/gioco/java2DGame/res/levels/small_test_level.png");
+		level=new Level("./res/levels/water_test_level.png");
 		player=new Player(level,0,0,input);
 		level.addEntity(player);
 	}

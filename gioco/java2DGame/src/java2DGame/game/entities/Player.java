@@ -10,7 +10,7 @@ public class Player extends Mob{
 	private InputHandler input;
 	private int colour = Colours.get(-1,111,145,543);
 	private int scale=1;
-	
+	protected boolean isSwimming=false;	
 
 	public Player(Level level, int x, int y, InputHandler input) {
 		super(level, "Player", x, y, 1);
@@ -34,8 +34,14 @@ public class Player extends Mob{
 		else {
 			isMoving=false;
 		}
+		
+		if(level.getTile(this.x>>3, this.y>>3).getID()==3){
+			isSwimming=true;
+		}
+		if(isSwimming && level.getTile(this.x>>3, this.y>>3).getID()!=3) {
+			isSwimming=false;
+		}
 	}
-
 
 	public void render(Screen screen) {
 		int xTile = 0;
@@ -57,9 +63,10 @@ public class Player extends Mob{
 		
 		screen.render(xOffset + (modifier*flipTop), yOffset, xTile+yTile*32, colour,flipTop,scale);
 		screen.render(xOffset+modifier-(modifier*flipTop), yOffset, (xTile+1)+yTile*32, colour,flipTop,scale);
-		screen.render(xOffset+ (modifier*flipBottom), yOffset+modifier, xTile+(yTile+1)*32, colour,flipBottom,scale);
-		screen.render(xOffset+modifier-(modifier*flipBottom), yOffset+modifier, (xTile+1)+(yTile+1)*32, colour,flipBottom,scale);
-
+		if(!isSwimming) {
+			screen.render(xOffset+ (modifier*flipBottom), yOffset+modifier, xTile+(yTile+1)*32, colour,flipBottom,scale);
+			screen.render(xOffset+modifier-(modifier*flipBottom), yOffset+modifier, (xTile+1)+(yTile+1)*32, colour,flipBottom,scale);
+		}
 	}
 	
 
